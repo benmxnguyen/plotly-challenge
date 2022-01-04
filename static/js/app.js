@@ -120,12 +120,16 @@ async function main() {
   Plotly.restyle("bar", "text", [filteredIDData[0].otu_labels.slice(0, 10)]);
   
   //updating bubble chart
-  Plotly.restyle("bubble", "x", [data]);
-  Plotly.restyle("bubble", "y", [data]);
-  Plotly.restyle("bubble", "text", [data]);
-  Plotly.restyle("bubble", "marker", [data]);
+  Plotly.restyle("bubble", "x", [filteredIDData[0].otu_ids]);
+  Plotly.restyle("bubble", "y", [filteredIDData[0].sample_values]);
+  Plotly.restyle("bubble", "text", [filteredIDData[0].otu_labels]);
+  let marker = {
+    color: filteredIDData[0].otu_ids,
+    size: filteredIDData[0].sample_values
+  }
+  Plotly.restyle("bubble", "marker", marker);
   
+  //update 
   });
 }
-const data = 
 main();
