@@ -94,7 +94,7 @@ async function main() {
   var data3 = [
     {
       type: "indicator",
-      mode: "gauge",
+      mode: "gauge+number",
       value: data.metadata[0].wfreq,
       title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
       gauge: {
@@ -168,6 +168,7 @@ async function main() {
   Plotly.restyle("bubble", "marker", marker);
   
   //update gauge chart
+  Plotly.restyle("gauge", "value", [filteredMetadata[0].wfreq])
   });
 }
 main();
