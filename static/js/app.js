@@ -62,9 +62,9 @@ async function main() {
   // create horizontal bar chart
   var trace = [{
       type: 'bar',
-      x: Object.values(data.samples[0].sample_values.slice(0, 10)),
-      values: Object.values(data.samples[0].otu_ids.slice(0, 10)),
-      text: Object.values(data.samples[0].otu_labels.slice(0, 10)),
+      x: data.samples[0].sample_values.slice(0, 10),
+      labels: data.samples[0].otu_ids.slice(0, 10),
+      tooltip: Object.values(data.samples[0].otu_labels.slice(0, 10)),
       orientation: 'h'
     }];
   
@@ -77,7 +77,7 @@ async function main() {
 
   // create bubble chart
   var trace1 = {
-      x: Object.values(data.samples[0].otu_ids),
+      x: data.samples[0].otu_ids,
       y: Object.values(data.samples[0].sample_values),
       mode: 'markers',
       text: Object.values(data.samples[0].otu_labels),
@@ -89,6 +89,44 @@ async function main() {
 
   let data2 = [trace1]
   Plotly.newPlot('bubble', data2);
+
+  // create gauage chart
+  var data3 = [
+    {
+      type: "indicator",
+      mode: "gauge",
+      value: data.metadata[0].wfreq,
+      title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
+      gauge: {
+        axis: { range: [null, 9], tickwidth: 3, tickcolor: "red" },
+        borderwidth: 2,
+        bordercolor: "gray",
+        steps: [
+          { range: [0, 1], color: "white", name: '0-1' },
+          { range: [1, 2], color: "grey", name: '1-2' },
+          { range: [2, 3], color: "black", name: '2-3' },
+          { range: [3, 4], color: "indigo", name: '3-4' },
+          { range: [4, 5], color: "blue", name: '4-5' },
+          { range: [5, 6], color: "green", name: '5-6' },
+          { range: [6, 7], color: "yellow", name: '6-7' },
+          { range: [7, 8], color: "orange", name: '7-8' },
+          { range: [8, 9], color: "red", name: '8-9' },
+        ],
+        showticklabels: true
+      },
+      ids: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9"]
+    }
+  ];
+  
+  var layout = {
+    width: 500,
+    height: 400,
+    margin: { t: 25, r: 25, l: 25, b: 25 },
+    paper_bgcolor: "lavender",
+    font: { color: "darkblue", family: "Arial" }
+  };
+  
+  Plotly.newPlot('gauge', data3, layout);
 
   // On change to the DOM
 
@@ -129,7 +167,7 @@ async function main() {
   }
   Plotly.restyle("bubble", "marker", marker);
   
-  //update 
+  //update gauge chart
   });
 }
 main();
