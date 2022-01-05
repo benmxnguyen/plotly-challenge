@@ -52,12 +52,13 @@ async function main() {
       orientation: 'h'
     }];
   
-  var layout = {
+  var layoutbar = {
+  title: `Top Ten OTus in SampleID: ${data.metadata[0].id}`,
   yaxis:{
       autorange:'reversed'
   }}
   
-  Plotly.newPlot('bar', trace, layout);
+  Plotly.newPlot('bar', trace, layoutbar);
 
   // create bubble chart
   var trace1 = {
@@ -72,7 +73,16 @@ async function main() {
     };
 
   let data2 = [trace1]
-  Plotly.newPlot('bubble', data2);
+
+  var layoutbubble = {
+    xaxis: {
+      title: {
+        text: 'OTU ID',
+      }
+    }
+  }
+
+  Plotly.newPlot('bubble', data2, layoutbubble);
 
   // create gauage chart
   var data3 = [
@@ -139,6 +149,7 @@ async function main() {
   Plotly.restyle("bar", "x", [filteredIDData[0].sample_values.slice(0, 10)]);
   Plotly.restyle("bar", "y", [filteredIDData[0].otu_ids.slice(0, 10).map(otu => `OTU ${otu}`)]);
   Plotly.restyle("bar", "text", [filteredIDData[0].otu_labels.slice(0, 10)]);
+  Plotly.relayout("bar", 'title', `Top Ten OTus in SampleID: ${filteredMetadata[0].id}`)
   
   //updating bubble chart
   Plotly.restyle("bubble", "x", [filteredIDData[0].otu_ids]);
