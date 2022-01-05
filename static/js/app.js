@@ -16,22 +16,6 @@ async function main() {
       option.textContent = parseInt(subject);
       dropdown.append(option);
   }
-  // determine top 10 OTUs
-  // console.log(data.samples[0].sample_values.sort(function compareFunction(
-  //     firstNum, secondNum) {
-  //     return firstNum, secondNum;
-  // }).slice(0, 10));
-  // let topTenOTUs = data.samples[0].sample_values.sort(function compareFunction(
-  //     firstNum, secondNum) {
-  //     return firstNum, secondNum;
-  // }).slice(0, 10);
-  // let indexListTopTen = []
-  // for (let i = 0; i < topTenOTUs.length; i++) {
-  //     let indexOfOTU = data.samples[0].sample_values.indexOf(topTenOTUs[i])
-  //     indexListTopTen.push(indexOfOTU)
-  // };
-  // console.log(indexListTopTen);
-  // console.log(data.samples[130]);
 
   // create metadata info
   var metadataPanel = document.querySelector('#sample-metadata')
@@ -63,7 +47,7 @@ async function main() {
   var trace = [{
       type: 'bar',
       x: data.samples[0].sample_values.slice(0, 10),
-      labels: data.samples[0].otu_ids.slice(0, 10),
+      y: data.samples[0].otu_ids.slice(0, 10).map(otu => `OTU ${otu}`),
       tooltip: Object.values(data.samples[0].otu_labels.slice(0, 10)),
       orientation: 'h'
     }];
@@ -102,15 +86,15 @@ async function main() {
         borderwidth: 2,
         bordercolor: "gray",
         steps: [
-          { range: [0, 1], color: "white", name: '0-1' },
-          { range: [1, 2], color: "grey", name: '1-2' },
-          { range: [2, 3], color: "black", name: '2-3' },
-          { range: [3, 4], color: "indigo", name: '3-4' },
-          { range: [4, 5], color: "blue", name: '4-5' },
-          { range: [5, 6], color: "green", name: '5-6' },
-          { range: [6, 7], color: "yellow", name: '6-7' },
-          { range: [7, 8], color: "orange", name: '7-8' },
-          { range: [8, 9], color: "red", name: '8-9' },
+          { range: [0, 1], color: "#66FF00", name: '0-1' },
+          { range: [1, 2], color: "#99FF00", name: '1-2' },
+          { range: [2, 3], color: "#CCFF00", name: '2-3' },
+          { range: [3, 4], color: "#FFFF00", name: '3-4' },
+          { range: [4, 5], color: "#FFCC00", name: '4-5' },
+          { range: [5, 6], color: "#FF9900", name: '5-6' },
+          { range: [6, 7], color: "FF6600", name: '6-7' },
+          { range: [7, 8], color: "FF3300", name: '7-8' },
+          { range: [8, 9], color: "FF0000", name: '8-9' },
         ],
         showticklabels: true
       },
@@ -129,7 +113,6 @@ async function main() {
   Plotly.newPlot('gauge', data3, layout);
 
   // On change to the DOM
-
 
   document.querySelector("#selDataset").addEventListener("change", event => {
   // Create a custom function to return a specific id's data
@@ -154,7 +137,7 @@ async function main() {
 
   //updating bar chart
   Plotly.restyle("bar", "x", [filteredIDData[0].sample_values.slice(0, 10)]);
-  Plotly.restyle("bar", "values", [filteredIDData[0].otu_ids.slice(0, 10)]);
+  Plotly.restyle("bar", "y", [filteredIDData[0].otu_ids.slice(0, 10).map(otu => `OTU ${otu}`)]);
   Plotly.restyle("bar", "text", [filteredIDData[0].otu_labels.slice(0, 10)]);
   
   //updating bubble chart
