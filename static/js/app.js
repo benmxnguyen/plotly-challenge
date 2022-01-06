@@ -1,6 +1,6 @@
 async function main() {
   // load in data
-  const response = await fetch("https://github.com/benmxnguyen/plotly-challenge/blob/main/data/samples.json");
+  const response = await fetch("/data/samples.json");
   const data = await response.json();
   console.log(data);
   console.log(data.names);
