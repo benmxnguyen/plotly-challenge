@@ -1,37 +1,5 @@
-## Welcome to GitHub Pages
+This assignment allowed me to demonstrate my knowledge of JS and Plotly. By leveraging all of these technologies, I was able to build a web page that displayed visuals describing the data for a particular sample of a dataset.
 
-You can use the [editor on GitHub](https://github.com/benmxnguyen/plotly-challenge/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+About the data: The data consisted of a json object which contained metadata about the subject, and data about the microbes found within the belly button of the subject. The data included the OTU ids, the OTU labels, OTU values.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/benmxnguyen/plotly-challenge/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+I was able to publish my web pages through Github's server. I was able to create an interactive dashboard using JS, which utilized an event listener that would update the plotly visuals any time a new sample ID was selected in the drop down menu. I was able to dynamically edit the html by leveraging the DOM.
